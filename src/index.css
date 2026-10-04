@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant light (&:where(.light, .light *));
+
 @theme {
   --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
 
@@ -97,9 +99,9 @@ html.light .placeholder\:text-slate-500::placeholder {
   color: #64748b;
 }
 
-/* #D4AF37 sobre papel claro da 1.9:1, ilegible como texto. */
+/* En claro el dorado de marca no llega a 4.5:1 sobre papel. */
 html.light .text-\[\#E7C665\] {
-  color: #8a6a1c;
+  color: #7a5c15;
 }
 
 html.light .text-\[\#D4AF37\] {
