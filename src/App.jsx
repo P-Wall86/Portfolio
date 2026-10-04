@@ -3,7 +3,7 @@ import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
 import LogoMark from './components/LogoMark.jsx'
-import Services from './components/Services.jsx'
+import Work from './components/Work.jsx'
 
 export default function App() {
   return (
@@ -22,7 +22,7 @@ export default function App() {
         </section>
 
         <About />
-        <Services />
+        <Work />
         <Contact />
       </main>
 

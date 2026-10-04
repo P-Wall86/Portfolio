@@ -59,10 +59,10 @@ src/
   index.css                   Tailwind + fondo global del body
   App.jsx                     wrapper transparente y composicion de secciones
   components/
-    LogoMark.jsx              isotipo SVG con dorado metalico + wordmark
-    Header.jsx                nav fija translucida
-    About.jsx                 About / Manifiesto + selected work
-    Services.jsx              grilla de 3 capacidades
+    LogoMark.jsx              nombre de marca + slogan del hero (solo texto)
+    Header.jsx                nav fija translucida + idioma + tema
+    About.jsx                 About / Manifiesto
+    Work.jsx                  los proyectos, seccion propia
     Contact.jsx               boton dorado + formulario
     Footer.jsx
     icons.jsx                 iconos vectoriales de linea

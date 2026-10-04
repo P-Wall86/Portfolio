@@ -14,6 +14,18 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
+
+  <!-- Aplica el tema antes del primer paint para que no haya flash blanco
+       al recargar en modo claro. Dark es el default. -->
+  <script>
+    try {
+      if (localStorage.getItem('wall-theme') === 'light') {
+        document.documentElement.classList.add('light')
+      }
+    } catch (error) {
+      /* localStorage bloqueado (modo privado): se queda en dark */
+    }
+  </script>
 </head>
 
 <body>

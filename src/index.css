@@ -55,6 +55,94 @@ body {
   color: #ffffff;
 }
 
+/* =============================================================
+   MODO CLARO
+   Se deriva del oscuro: misma paleta, misma tipografia, mismos
+   bordes redondeados. Solo se invierten las superficies y el color
+   de texto, con un papel calido en vez del azul tinta. El grano
+   sigue siendo el mismo feTurbulence: 100% vectorial en ambos modos.
+
+   Dark es el default (identidad WALL) y el toggle escribe la clase
+   `light` sobre <html>.
+   ============================================================= */
+html.light {
+  background-color: #f2ece1;
+}
+
+html.light body {
+  color: #1f2937;
+  background-color: #f2ece1 !important;
+}
+
+html.light ::selection {
+  background: rgba(212, 175, 55, 0.35);
+  color: #0a1128;
+}
+
+/* Superficies: en oscuro la pelicula blanca al 5% levanta la tarjeta
+   sobre el azul. En claro tiene que ser al reves: blanco casi solido
+   para separar del papel, con borde oscuro tenue. */
+html.light .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.72);
+}
+
+html.light .bg-white\/\[0\.03\] {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+html.light .bg-white\/\[0\.04\] {
+  background-color: rgba(255, 255, 255, 0.78);
+}
+
+html.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+/* Texto */
+html.light .text-slate-100 {
+  color: #0f172a;
+}
+
+html.light .text-slate-300 {
+  color: #334155;
+}
+
+html.light .text-slate-400 {
+  color: #475569;
+}
+
+html.light .text-slate-500 {
+  color: #64748b;
+}
+
+html.light .placeholder\:text-slate-500::placeholder {
+  color: #64748b;
+}
+
+/* Mismo dorado de marca, oscurecido solo lo necesario para mantener
+   contraste sobre papel claro. El dorado puro #D4AF37 sobre #F2ECE1
+   queda en ~1.9:1, ilegible como texto. */
+html.light .text-\[\#E7C665\] {
+  color: #8a6a1c;
+}
+
+html.light .text-\[\#D4AF37\] {
+  color: #7a5c15;
+}
+
+html.light .hover\:text-\[\#D4AF37\]:hover,
+html.light .hover\:text-\[\#E7C665\]:hover {
+  color: #6b5010;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #e7dfd1;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #c3b8a4;
+}
+
 /* Foco visible para teclado, en el tono de marca. */
 :focus-visible {
   outline: 2px solid var(--color-gold);
