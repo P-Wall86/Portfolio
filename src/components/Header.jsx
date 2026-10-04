@@ -10,11 +10,7 @@ const LINKS = [
 
 const THEME_KEY = 'wall-theme'
 
-/**
- * El tema se aplica con la clase `light` sobre <html>, y esa clase ya la
- * escribe el script inline de index.html antes del primer paint para que
- * no haya flash. Aca solo leemos lo que quedo aplicado.
- */
+/* El tema ya lo aplico el script de index.html antes del primer paint. */
 function readTheme() {
   if (typeof document === 'undefined') return 'dark'
 
@@ -23,8 +19,7 @@ function readTheme() {
 
 export default function Header() {
   const [theme, setTheme] = useState(readTheme)
-  // El sitio esta en espanol. La UI del selector existe y marca el idioma
-  // activo, pero no hay traducciones de contenido todavia.
+  // Sin traducciones todavia: solo marca el idioma activo.
   const [lang, setLang] = useState('es')
 
   useEffect(() => {
@@ -43,7 +38,7 @@ export default function Header() {
     try {
       window.localStorage.setItem(THEME_KEY, next)
     } catch {
-      /* modo privado: la preferencia no persiste, el toggle sigue funcionando */
+      /* modo privado: no persiste, el toggle sigue funcionando */
     }
 
     setTheme(next)
@@ -57,7 +52,6 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-white/5 backdrop-blur-md">
       <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-4 sm:gap-6 sm:px-6">
-        {/* Wordmark en texto: el header no lleva logo. */}
         <a
           href="#top"
           aria-label="WALL — ir al inicio"
@@ -82,10 +76,7 @@ export default function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5">
-          {/* Idioma: un solo boton que alterna ES / EN, mismo diseno
-              que el toggle de tema. No hay traducciones de contenido
-              todavia; el control marca el idioma activo y actualiza el
-              atributo lang del documento. */}
+          {/* Idioma: un boton que alterna ES / EN, mismo diseno que el de tema. */}
           <button
             type="button"
             onClick={toggleLang}

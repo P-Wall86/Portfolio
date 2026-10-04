@@ -12,19 +12,8 @@
   --color-gold: #d4af37;
 }
 
-/* =============================================================
-   FONDO GLOBAL — obligatorio
-   El body es la UNICA superficie con fondo: ninguna tarjeta,
-   wrapper ni seccion de React pone un color solido encima, por
-   eso el stucco se ve a traves de todo el sitio.
-
-   El grano es un feTurbulence SVG inline (data URI): 100%
-   vectorial, sin .jpg ni .png que pixelice en pantallas grandes.
-
-   OJO: iOS Safari no soporta background-attachment: fixed — ahi el
-   fondo queda fijo y no acompana el scroll. El diseno aguanta igual
-   porque el color base es opaco.
-   ============================================================= */
+/* Fondo global: el body es la unica superficie con fondo. El grano es
+   feTurbulence inline, sin imagenes. En iOS Safari el fixed no scrollea. */
 html {
   background-color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
@@ -44,7 +33,6 @@ body {
   color: #e8ecf5;
 }
 
-/* El #root no debe trippingar el fondo del body. */
 #root {
   min-height: 100vh;
   background-color: transparent;
@@ -55,16 +43,8 @@ body {
   color: #ffffff;
 }
 
-/* =============================================================
-   MODO CLARO
-   Se deriva del oscuro: misma paleta, misma tipografia, mismos
-   bordes redondeados. Solo se invierten las superficies y el color
-   de texto, con un papel calido en vez del azul tinta. El grano
-   sigue siendo el mismo feTurbulence: 100% vectorial en ambos modos.
-
-   Dark es el default (identidad WALL) y el toggle escribe la clase
-   `light` sobre <html>.
-   ============================================================= */
+/* Modo claro: mismo dorado y mismas superficies translucidas, solo se
+   invierten papel, texto y bordes. Lo escribe el toggle sobre <html>. */
 html.light {
   background-color: #f2ece1;
 }
@@ -79,9 +59,7 @@ html.light ::selection {
   color: #0a1128;
 }
 
-/* Superficies: en oscuro la pelicula blanca al 5% levanta la tarjeta
-   sobre el azul. En claro tiene que ser al reves: blanco casi solido
-   para separar del papel, con borde oscuro tenue. */
+/* Superficies: en claro el blanco va casi solido para separar del papel. */
 html.light .bg-white\/5 {
   background-color: rgba(255, 255, 255, 0.72);
 }
@@ -119,9 +97,7 @@ html.light .placeholder\:text-slate-500::placeholder {
   color: #64748b;
 }
 
-/* Mismo dorado de marca, oscurecido solo lo necesario para mantener
-   contraste sobre papel claro. El dorado puro #D4AF37 sobre #F2ECE1
-   queda en ~1.9:1, ilegible como texto. */
+/* #D4AF37 sobre papel claro da 1.9:1, ilegible como texto. */
 html.light .text-\[\#E7C665\] {
   color: #8a6a1c;
 }
@@ -143,14 +119,12 @@ html.light ::-webkit-scrollbar-thumb {
   background: #c3b8a4;
 }
 
-/* Foco visible para teclado, en el tono de marca. */
 :focus-visible {
   outline: 2px solid var(--color-gold);
   outline-offset: 3px;
   border-radius: 0.25rem;
 }
 
-/* Barra de scroll discreta, sin romper el dark. */
 ::-webkit-scrollbar {
   width: 10px;
 }

@@ -7,8 +7,7 @@ import Work from './components/Work.jsx'
 
 export default function App() {
   return (
-    // bg-transparent: el fondo con stucco del body tiene que verse. Ningun
-    // contenedor de esta pagina pone un color solido encima.
+    // bg-transparent para que se vea el fondo del body.
     <div className="min-h-screen bg-transparent">
       <Header />
 

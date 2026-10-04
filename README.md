@@ -42,12 +42,8 @@ grandes y pesa lo mismo en cualquier resolución.
 
 ## Deploy
 
-GitHub Actions (`.github/workflows/deploy.yml`) buildea y publica en GitHub
-Pages en cada push a `main`. En el repo: **Settings → Pages → Source:
-GitHub Actions**.
-
-`vite.config.js` usa `base: './'`, así que el mismo build funciona tanto en la
-raíz de un dominio como bajo `/Portfolio/`.
+Sin GitHub Pages. `npm run build` genera `dist/` para subir donde quieras.
+`vite.config.js` usa `base: './'`, así que el build funciona en cualquier subruta.
 
 ## Estructura
 

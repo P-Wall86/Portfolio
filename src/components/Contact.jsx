@@ -13,11 +13,7 @@ export default function Contact() {
   const update = (field) => (event) =>
     setForm((prev) => ({ ...prev, [field]: event.target.value }))
 
-  /**
-   * Sin backend ni mailto: arma el mensaje y lo deja en el portapapeles,
-   * listo para pegarlo en el DM de Instagram. Es el unico canal de
-   * contacto que hay, asi que no prometemos un envio que no existe.
-   */
+  /* Sin backend: copia el mensaje para pegarlo en el DM de Instagram. */
   const handleSubmit = async (event) => {
     event.preventDefault()
 

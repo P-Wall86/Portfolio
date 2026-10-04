@@ -1,4 +1,3 @@
-/** Iconos de linea, 1.5px de stroke para que casen con el peso del texto. */
 const base = {
   xmlns: 'http://www.w3.org/2000/svg',
   viewBox: '0 0 24 24',
