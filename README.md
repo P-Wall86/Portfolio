@@ -1,38 +1,76 @@
 # W • A • L • L — Portfolio
 
-Portfolio de desarrollo web.
+Portfolio de desarrollo de software. Identidad visual **Dark Executive**: fondo
+oscuro con textura de stucco hecha en CSS puro, tipografía Montserrat y acentos
+dorados.
+
+## Stack
+
+- **React 19** + **Vite 7**
+- **Tailwind CSS v4** (vía `@tailwindcss/vite`)
 
 ## Ver localmente
 
-Abrí `index.html` en el navegador. No hay build, no hay `npm install`.
-
-Si probás los toggles de tema e idioma, necesitás un servidor local (usan `fetch`):
-
 ```bash
-python -m http.server 8000
+npm install
+npm run dev
 ```
 
-y abrí `http://localhost:8000`.
+Build de producción:
+
+```bash
+npm run build     # genera dist/
+npm run preview   # sirve dist/ para verificar
+```
+
+## Fondo y textura
+
+El fondo global vive **exclusivamente en el `body`** de `src/index.css`:
+
+- `background-color: #0A1128` con `!important`
+- textura de grano con un `feTurbulence` SVG inline como data URI
+- `background-attachment: fixed` para que no se mueva al hacer scroll
+
+No hay imágenes de fondo: todo es vectorial, así que no pixeliza en pantallas
+grandes y pesa lo mismo en cualquier resolución.
+
+> **Regla del proyecto:** ningún contenedor en React puede poner un fondo
+> sólido (`bg-black`, `bg-slate-900`, etc.). El wrapper principal es
+> `bg-transparent` y las tarjetas usan `bg-white/5` con `border-white/10`, para
+> que el stucco se vea a través de todo. Si agregás una sección con color
+> propio, mantenela translúcida.
 
 ## Deploy
 
-Pensado para GitHub Pages:
+GitHub Actions (`.github/workflows/deploy.yml`) buildea y publica en GitHub
+Pages en cada push a `main`. En el repo: **Settings → Pages → Source:
+GitHub Actions**.
 
-1. Settings → Pages
-2. Source: `main` / `root`
-
-La URL queda como `https://P-Wall86.github.io/Portfolio/`.
+`vite.config.js` usa `base: './'`, así que el mismo build funciona tanto en la
+raíz de un dominio como bajo `/Portfolio/`.
 
 ## Estructura
 
 ```
-index.html          toda la página
-assets/pared.jpg    el fondo: la foto del logo con el stucco
+index.html                    entry de Vite
+vite.config.js                base relativa + plugins
+src/
+  main.jsx                    monta React
+  index.css                   Tailwind + fondo global del body
+  App.jsx                     wrapper transparente y composicion de secciones
+  components/
+    LogoMark.jsx              isotipo SVG con dorado metalico + wordmark
+    Header.jsx                nav fija translucida
+    About.jsx                 About / Manifiesto + selected work
+    Services.jsx              grilla de 3 capacidades
+    Contact.jsx               boton dorado + formulario
+    Footer.jsx
+    icons.jsx                 iconos vectoriales de linea
 ```
-
-Sin dependencias. Tailwind entra por CDN en las versiones anteriores; la actual
-usa CSS propio. Las fuentes vienen de Google Fonts.
 
 ## Contacto
 
 - Instagram: [@pame.wall](https://www.instagram.com/pame.wall/)
+
+El formulario arma el mensaje y lo copia al portapapeles para pegarlo en el DM:
+no hay backend ni servicio de email detrás.
