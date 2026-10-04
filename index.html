@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>W • A • L • L — Desarrollo web</title>
+    <meta name="description"
+        content="W•A•L•L. Desarrollo web. Proyectos reales con React, Next.js, TypeScript y Supabase." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="W•A•L•L — Desarrollo web" />
+    <meta property="og:description"
+        content="Proyectos reales con React, Next.js, TypeScript y Supabase. Built to serve." />
+    <meta property="og:url" content="https://pame-wal.github.io/" />
+    <meta property="og:locale" content="es_AR" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-950 text-slate-300 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
+            <a href="https://www.instagram.com/pame.wall/" target="_blank" rel="noopener noreferrer"
+                class="text-white hover:text-[#2cb7c9] transition-colors font-semibold tracking-[0.25em] text-sm">
+                W • A • L • L
+            </a>
+            <nav class="flex gap-6 text-sm">
+                <a href="#proyectos" class="hover:text-white transition-colors">Proyectos</a>
+                <a href="https://www.instagram.com/pame.wall/" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-white transition-colors">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="max-w-5xl mx-auto px-6 pt-20 pb-16 sm:pt-28 sm:pb-20">
+            <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-tight">
+                Construyo software<br />
+                <span class="text-[#2cb7c9]">que se usa.</span>
+            </h1>
+            <p class="mt-6 text-lg text-slate-400 max-w-2xl leading-relaxed">
+                Desarrollo web con React, TypeScript y Supabase. Me interesan los proyectos donde
+                la herramienta resuelve un problema concreto de alguien — y no la landing page que
+                solo se ve bien.
+            </p>
+        </section>
+
+        <!-- Proyectos -->
+        <section id="proyectos" class="max-w-5xl mx-auto px-6 py-16 border-t border-slate-800">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 mb-10">
+                Proyectos
+            </h2>
+
+            <div class="space-y-16">
+
+                <!-- Inventech -->
+                <article>
+                    <div class="flex flex-wrap items-baseline gap-3 mb-3">
+                        <h3 class="text-2xl font-semibold text-white">Inventech</h3>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            Proyecto principal
+                        </span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed max-w-2xl mb-5">
+                        Plataforma de gestión de activos tecnológicos para una Estaca. Inventario por
+                        unidad, control de acceso por rol y registro de auditoría. Web y app Android
+                        nativa.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">React 18</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">TypeScript</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Supabase</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Postgres</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Tailwind</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Capacitor</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Edge Functions</span>
+                    </div>
+                    <p class="text-sm text-slate-500">
+                        Herramienta interna en producción. Logins dummy por unidad, no correos personales,
+                        y contraseñas con referencias a los libros canónicos.
+                    </p>
+                </article>
+
+                <!-- Punto BAT 3D -->
+                <article>
+                    <h3 class="text-2xl font-semibold text-white mb-3">Punto BAT 3D</h3>
+                    <p class="text-slate-400 leading-relaxed max-w-2xl mb-5">
+                        E-commerce de impresión 3D personalizada. Catálogo por categorías con paginación,
+                        selección de productos y pedido directo por WhatsApp. Desarrollo front-end.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Next.js</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Tailwind</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">TypeScript</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Lucide</span>
+                    </div>
+                    <a href="https://puntobat3d.com.ar/" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-sm text-[#2cb7c9] hover:text-[#5ad4e2] transition-colors">
+                        Ver el sitio en vivo →
+                    </a>
+                </article>
+
+                <!-- EfiCO -->
+                <article>
+                    <h3 class="text-2xl font-semibold text-white mb-3">EfiCO</h3>
+                    <p class="text-slate-400 leading-relaxed max-w-2xl mb-5">
+                        Sitio institucional one-page para una escuela de coaching ontológico. Diez
+                        secciones: valores, equipo, programas, testimonios y FAQ. Carrusel, accordion
+                        responsive y optimizado para SEO.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">HTML</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">CSS</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">JavaScript</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Font Awesome</span>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-5">
+                        Primer proyecto con un cliente real. Vanilla, sin frameworks.
+                    </p>
+                    <a href="https://eficoweb.com/" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-sm text-[#2cb7c9] hover:text-[#5ad4e2] transition-colors">
+                        Ver el sitio en vivo →
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Sobre mí -->
+        <section class="max-w-5xl mx-auto px-6 py-16 border-t border-slate-800">
+            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 mb-8">
+                Sobre mí
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-8 max-w-3xl">
+                <p class="leading-relaxed">
+                    Empecé con HTML, CSS y JavaScript sin frameworks, en un proyecto real para una
+                    escuela de coaching. Después pasé a React y desde ahí vengo trabajando con
+                    TypeScript, Supabase y deploying en producción.
+                </p>
+                <p class="leading-relaxed">
+                    Me interesa el punto donde el software deja de ser código y pasa a ser la
+                    herramienta con la que alguien trabaja todos los días. Ahí es donde aparecen los
+                    problemas interesting.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 mt-8">
+        <div class="max-w-5xl mx-auto px-6 py-10 text-center">
+            <a href="https://www.instagram.com/pame.wall/" target="_blank" rel="noopener noreferrer"
+                class="text-white/70 hover:text-[#2cb7c9] transition-colors font-medium tracking-[0.25em] text-sm">
+                W • A • L • L
+            </a>
+            <p class="mt-1 text-xs font-light text-white/40">
+                Built to serve
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
