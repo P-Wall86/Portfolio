@@ -1,26 +1,37 @@
-# W • A • L • L
+# W • A • L • L — Portfolio
 
 Portfolio de desarrollo web.
 
 ## Ver localmente
 
-Abrí `index.html` en el navegador. No hay build, no hay `npm install`, no hay nada que instalar.
+Abrí `index.html` en el navegador. No hay build, no hay `npm install`.
+
+Si probás los toggles de tema e idioma, necesitás un servidor local (usan `fetch`):
+
+```bash
+python -m http.server 8000
+```
+
+y abrí `http://localhost:8000`.
 
 ## Deploy
 
-Está pensado para GitHub Pages:
+Pensado para GitHub Pages:
 
-1. Subí la carpeta a un repo nuevo en GitHub
-2. Settings → Pages → Source: `main` / `root`
-3. Te da una URL tipo `https://usuario.github.io/nombre-repo/`
+1. Settings → Pages
+2. Source: `main` / `root`
 
-No hay configuración extra. Tailwind entra por CDN, las fuentes por Google Fonts.
+La URL queda como `https://P-Wall86.github.io/Portfolio/`.
 
 ## Estructura
 
-Un solo archivo, `index.html`. Todo el CSS son clases de Tailwind por CDN y los estilos van
-en el atributo `class`. Si algún día esto crece y necesitás un build, se puede migrar a Next.js
-sin cambiar el contenido.
+```
+index.html          toda la página
+assets/pared.jpg    el fondo: la foto del logo con el stucco
+```
+
+Sin dependencias. Tailwind entra por CDN en las versiones anteriores; la actual
+usa CSS propio. Las fuentes vienen de Google Fonts.
 
 ## Contacto
 

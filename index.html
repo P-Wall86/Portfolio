@@ -2,171 +2,350 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>W • A • L • L — Desarrollo web</title>
-    <meta name="description"
-        content="W•A•L•L. Desarrollo web. Proyectos reales con React, Next.js, TypeScript y Supabase." />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="W•A•L•L — Desarrollo web" />
-    <meta property="og:description"
-        content="Proyectos reales con React, Next.js, TypeScript y Supabase. Built to serve." />
-    <meta property="og:url" content="https://pame-wal.github.io/" />
-    <meta property="og:locale" content="es_AR" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W • A • L • L | Built to serve</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ============================================================
+           PARED
+
+           UNA sola imagen: la foto entera del logo, estirada a cubrir
+           toda la pagina. El dorado y el stucco salen de la misma foto,
+           asi que no hay dos papeles que puedan desfasar: es una sola
+           superficie con el logo grabado en el medio.
+
+           background-size:cover  -> una imagen, sin repeticion
+           background-attachment:fixed -> no se mueve al hacer scroll
+
+           OJO: iOS Safari no soporta background-attachment:fixed. Ahi
+           el fondo queda fijo y no acompana el scroll.
+        */
+        html {
+            background-color: #efdcc3;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            color: #33261a;
+            background-color: #efdcc3;
+            background-image: url("assets/pared.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* ============================================================
+           CONTENIDO
+        */
+
+        .wrap {
+            max-width: 62rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* --- Header ---
+           Sin fondo y sin opacidad: no se superpone a nada porque NO es
+           sticky. El logo grabado queda libre en el centro, el texto
+           queda sobre stucco limpio y el contenido nunca pasa por
+           debajo. */
+        .site-header {
+            padding: 1.6rem 0;
+        }
+
+        .site-header .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .site-nav {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .site-nav a {
+            color: #4a3a26;
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .site-nav a:hover {
+            color: #8a6a1c;
+        }
+
+        .toggles {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2.2rem;
+            padding: 0.25rem 0.55rem;
+            font-family: inherit;
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            color: #4a3a26;
+            background: none;
+            border: 1px solid rgba(51, 38, 26, 0.35);
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.25s;
+        }
+
+        .toggle:hover {
+            color: #8a6a1c;
+            border-color: #8a6a1c;
+        }
+
+        /* --- Hero ---
+           .hero-spacer es transparente y ocupa el alto de la pantalla:
+           ahi se ve el logo de la foto, completo, sin nada encima.
+           .hero arranca DESPUES, con el panel opaco del texto. */
+        .hero-spacer {
+            height: 100vh;
+        }
+
+        .hero {
+            background-color: #faf6ef;
+            padding: 4rem 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            margin-left: 0.28em;
+            color: #2b1f14;
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+
+        .hero-lead {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #5a4834;
+            max-width: 34rem;
+            margin: 0 auto;
+        }
+
+        /* --- Proyectos --- */
+        .section {
+            background-color: #faf6ef;
+            padding: 4rem 0;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: #7a6850;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Tarjetas OPACAS. El fondo con foto queda como accent: entra
+           por los bordes y en la franja del hero, no debajo del texto. */
+        .project {
+            background-color: #ffffff;
+            border: 1px solid rgba(51, 38, 26, 0.14);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 1px 3px rgba(51, 38, 26, 0.07);
+        }
+
+        .project-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2b1f14;
+        }
+
+        .badge {
+            font-size: 0.62rem;
+            letter-spacing: 0.06em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            background-color: #f4ead6;
+            color: #7a5c15;
+            border: 1px solid #ddc58c;
+        }
+
+        .project-text {
+            line-height: 1.7;
+            color: #4a3a26;
+            max-width: 40rem;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .chip {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 999px;
+            background-color: #f2ece1;
+            border: 1px solid rgba(51, 38, 26, 0.14);
+            color: #5a4834;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1.25rem;
+            font-size: 0.85rem;
+            color: #7a5c15;
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .project-link:hover {
+            color: #5c4510;
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: #faf6ef;
+            border-top: 1px solid rgba(51, 38, 26, 0.15);
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-mark {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: #2b1f14;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tag {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.14em;
+            color: #7a6850;
+        }
+
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 1.4rem;
+                letter-spacing: 0.2em;
+                margin-left: 0.2em;
+            }
+
+            .site-nav {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-slate-950 text-slate-300 font-sans antialiased">
+<body>
 
-    <!-- Header -->
-    <header class="border-b border-slate-800">
-        <div class="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
-            <a href="https://www.instagram.com/pame.wall/" target="_blank" rel="noopener noreferrer"
-                class="text-white hover:text-[#2cb7c9] transition-colors font-semibold tracking-[0.25em] text-sm">
-                W • A • L • L
-            </a>
-            <nav class="flex gap-6 text-sm">
-                <a href="#proyectos" class="hover:text-white transition-colors">Proyectos</a>
-                <a href="https://www.instagram.com/pame.wall/" target="_blank" rel="noopener noreferrer"
-                    class="hover:text-white transition-colors">Contacto</a>
+    <header class="site-header">
+        <div class="wrap">
+            <nav class="site-nav">
+                <a href="#proyectos">Proyectos</a>
+                <a href="https://www.instagram.com/pame.wall/" target="_blank" rel="noopener noreferrer">Contacto</a>
             </nav>
+            <div class="toggles">
+                <button class="toggle" type="button" id="btn-theme" aria-label="Cambiar tema">☾</button>
+                <button class="toggle" type="button" id="btn-lang" aria-label="Cambiar idioma">EN</button>
+            </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero -->
-        <section class="max-w-5xl mx-auto px-6 pt-20 pb-16 sm:pt-28 sm:pb-20">
-            <h1 class="text-4xl sm:text-6xl font-bold text-white tracking-tight leading-tight">
-                Construyo software<br />
-                <span class="text-[#2cb7c9]">que se usa.</span>
-            </h1>
-            <p class="mt-6 text-lg text-slate-400 max-w-2xl leading-relaxed">
-                Desarrollo web con React, TypeScript y Supabase. Me interesan los proyectos donde
-                la herramienta resuelve un problema concreto de alguien — y no la landing page que
-                solo se ve bien.
-            </p>
+
+        <section class="hero-spacer"></section>
+
+        <section class="hero">
+            <h1 class="hero-title">W • A • L • L</h1>
+            <p class="hero-lead">Construyo software que se usa. Desarrollo web con React, TypeScript y Supabase.</p>
         </section>
 
-        <!-- Proyectos -->
-        <section id="proyectos" class="max-w-5xl mx-auto px-6 py-16 border-t border-slate-800">
-            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 mb-10">
-                Proyectos
-            </h2>
+        <section class="section" id="proyectos">
+            <div class="wrap">
+                <p class="section-label">PROYECTOS</p>
 
-            <div class="space-y-16">
-
-                <!-- Inventech -->
-                <article>
-                    <div class="flex flex-wrap items-baseline gap-3 mb-3">
-                        <h3 class="text-2xl font-semibold text-white">Inventech</h3>
-                        <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                            Proyecto principal
-                        </span>
+                <article class="project">
+                    <div class="project-head">
+                        <h2 class="project-name">Inventech</h2>
+                        <span class="badge">Proyecto principal</span>
                     </div>
-                    <p class="text-slate-400 leading-relaxed max-w-2xl mb-5">
-                        Plataforma de gestión de activos tecnológicos para una Estaca. Inventario por
-                        unidad, control de acceso por rol y registro de auditoría. Web y app Android
-                        nativa.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-5">
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">React 18</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">TypeScript</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Supabase</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Postgres</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Tailwind</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Capacitor</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Edge Functions</span>
+                    <p class="project-text">Plataforma de gestión de activos tecnológicos para una Estaca. Inventario por unidad, control de acceso por rol y registro de auditoría. Web y app Android nativa.</p>
+                    <div class="chips">
+                        <span class="chip">React 18</span>
+                        <span class="chip">TypeScript</span>
+                        <span class="chip">Supabase</span>
+                        <span class="chip">Tailwind</span>
+                        <span class="chip">Capacitor</span>
                     </div>
-                    <p class="text-sm text-slate-500">
-                        Herramienta interna en producción. Logins dummy por unidad, no correos personales,
-                        y contraseñas con referencias a los libros canónicos.
-                    </p>
                 </article>
 
-                <!-- Punto BAT 3D -->
-                <article>
-                    <h3 class="text-2xl font-semibold text-white mb-3">Punto BAT 3D</h3>
-                    <p class="text-slate-400 leading-relaxed max-w-2xl mb-5">
-                        E-commerce de impresión 3D personalizada. Catálogo por categorías con paginación,
-                        selección de productos y pedido directo por WhatsApp. Desarrollo front-end.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-5">
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Next.js</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Tailwind</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">TypeScript</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Lucide</span>
+                <article class="project">
+                    <div class="project-head">
+                        <h2 class="project-name">Punto BAT 3D</h2>
                     </div>
-                    <a href="https://puntobat3d.com.ar/" target="_blank" rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 text-sm text-[#2cb7c9] hover:text-[#5ad4e2] transition-colors">
-                        Ver el sitio en vivo →
-                    </a>
+                    <p class="project-text">E-commerce de impresión 3D personalizada. Catálogo por categorías con paginación y pedido directo por WhatsApp. Desarrollo front-end.</p>
+                    <div class="chips">
+                        <span class="chip">Next.js</span>
+                        <span class="chip">Tailwind</span>
+                        <span class="chip">TypeScript</span>
+                    </div>
+                    <a class="project-link" href="https://puntobat3d.com.ar/" target="_blank" rel="noopener noreferrer">Ver el sitio en vivo →</a>
                 </article>
 
-                <!-- EfiCO -->
-                <article>
-                    <h3 class="text-2xl font-semibold text-white mb-3">EfiCO</h3>
-                    <p class="text-slate-400 leading-relaxed max-w-2xl mb-5">
-                        Sitio institucional one-page para una escuela de coaching ontológico. Diez
-                        secciones: valores, equipo, programas, testimonios y FAQ. Carrusel, accordion
-                        responsive y optimizado para SEO.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-5">
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">HTML</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">CSS</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">JavaScript</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300">Font Awesome</span>
+                <article class="project">
+                    <div class="project-head">
+                        <h2 class="project-name">EfiCO</h2>
                     </div>
-                    <p class="text-sm text-slate-500 mb-5">
-                        Primer proyecto con un cliente real. Vanilla, sin frameworks.
-                    </p>
-                    <a href="https://eficoweb.com/" target="_blank" rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 text-sm text-[#2cb7c9] hover:text-[#5ad4e2] transition-colors">
-                        Ver el sitio en vivo →
-                    </a>
+                    <p class="project-text">Sitio institucional one-page para una escuela de coaching ontológico. Carrusel, accordion responsive y optimizado para SEO. Primer proyecto con un cliente real, en vanilla.</p>
+                    <div class="chips">
+                        <span class="chip">HTML</span>
+                        <span class="chip">CSS</span>
+                        <span class="chip">JavaScript</span>
+                    </div>
+                    <a class="project-link" href="https://eficoweb.com/" target="_blank" rel="noopener noreferrer">Ver el sitio en vivo →</a>
                 </article>
 
             </div>
         </section>
 
-        <!-- Sobre mí -->
-        <section class="max-w-5xl mx-auto px-6 py-16 border-t border-slate-800">
-            <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500 mb-8">
-                Sobre mí
-            </h2>
-            <div class="grid sm:grid-cols-2 gap-8 max-w-3xl">
-                <p class="leading-relaxed">
-                    Empecé con HTML, CSS y JavaScript sin frameworks, en un proyecto real para una
-                    escuela de coaching. Después pasé a React y desde ahí vengo trabajando con
-                    TypeScript, Supabase y deploying en producción.
-                </p>
-                <p class="leading-relaxed">
-                    Me interesa el punto donde el software deja de ser código y pasa a ser la
-                    herramienta con la que alguien trabaja todos los días. Ahí es donde aparecen los
-                    problemas interesting.
-                </p>
-            </div>
-        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 mt-8">
-        <div class="max-w-5xl mx-auto px-6 py-10 text-center">
-            <a href="https://www.instagram.com/pame.wall/" target="_blank" rel="noopener noreferrer"
-                class="text-white/70 hover:text-[#2cb7c9] transition-colors font-medium tracking-[0.25em] text-sm">
-                W • A • L • L
-            </a>
-            <p class="mt-1 text-xs font-light text-white/40">
-                Built to serve
-            </p>
-        </div>
+    <footer class="site-footer">
+        <p class="footer-mark">W • A • L • L</p>
+        <p class="footer-tag">Built to serve</p>
     </footer>
 
 </body>
