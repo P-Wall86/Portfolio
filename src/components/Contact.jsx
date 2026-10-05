@@ -10,7 +10,6 @@ const COPY = {
   es: {
     title: '¿Tenés algo que querés armar?',
     subtitle: 'Contame de qué se trata.',
-    form: 'Formulario:',
     name: 'Nombre',
     message: 'Mensaje',
     submit: 'Enviar mensaje',
@@ -20,7 +19,6 @@ const COPY = {
   en: {
     title: 'Got something you want to put together?',
     subtitle: 'Tell me about it.',
-    form: 'Form:',
     name: 'Name',
     message: 'Message',
     submit: 'Send message',
@@ -89,10 +87,6 @@ export default function Contact({ lang }) {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D4AF37]">
-              {t.form}
-            </p>
-
             <div className="grid gap-3 sm:grid-cols-2">
               <input
                 type="text"
