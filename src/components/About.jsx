@@ -1,9 +1,11 @@
 const COPY = {
   es: [
+    'Soy Pamela.',
     'Con formación en enseñanza del inglés y desarrollo de software, construyo herramientas digitales con foco en la claridad, la usabilidad y el propósito.',
     'Me interesa especialmente crear herramientas que hagan más fácil organizar, comprender, navegar y aplicar la información.',
   ],
   en: [
+    'I’m Pamela.',
     'With a background in English language teaching and formal training in software development, I build digital tools with a focus on clarity, usability, and purpose.',
     'I’m particularly interested in creating tools that make information easier to organize, navigate, and apply.',
   ],

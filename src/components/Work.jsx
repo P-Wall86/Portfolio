@@ -74,9 +74,9 @@ const PROJECTS = [
     es: {
       type: 'App · Gestión tecnológica',
       desc: [
-        'Una herramienta diseñada para ayudar a especialistas de tecnología a gestionar el equipamiento de múltiples ubicaciones. En este caso, fue desarrollada para una organización religiosa, donde cada ubicación puede contar con sus propios recursos tecnológicos, equipos y necesidades.',
-        'Centraliza la información sobre los equipos, su ubicación y estado, y facilita el seguimiento de reparaciones, reemplazos y necesidades de nuevo equipamiento.',
-        'Más que un inventario, InvenTech ofrece una visión clara de los recursos tecnológicos de la organización y ayuda a mantener organizada la coordinación necesaria para gestionarlos.',
+        'Una herramienta diseñada para ayudar a especialistas en tecnología a gestionar el equipamiento de distintas ubicaciones. En este caso, fue desarrollada para una organización religiosa, donde cada ubicación puede contar con sus propios recursos tecnológicos, equipos y necesidades.',
+        'Centraliza la información sobre los equipos, su ubicación y estado, y facilita el seguimiento de reparaciones, reemplazos y necesidades de nuevo equipamiento. Esto permite mantener una visión actualizada de los recursos disponibles y de aquello que requiere atención.',
+        'Más que un inventario, InvenTech ayuda a anticipar necesidades y facilita la coordinación necesaria para mantener, reemplazar o incorporar equipamiento.',
       ],
       tag: 'Inventario · Equipamiento · Gestión tecnológica',
       tagNote: 'Diseñada para hacer más manejable una responsabilidad compleja.',
@@ -85,8 +85,8 @@ const PROJECTS = [
       type: 'App · Technology Management',
       desc: [
         'A tool designed to help technology specialists manage equipment across multiple locations. In this case, it was developed for a religious organization, where each location may have its own technology resources, equipment, and needs.',
-        'It brings information about equipment, location, and condition into one place, while making it easier to track repairs, replacements, and new equipment needs.',
-        'More than an inventory, InvenTech provides a clear view of technology resources across the organization and helps keep the coordination behind them organized.',
+        'It centralizes information about equipment, its location, and condition, while making it easier to track repairs, replacements, and new equipment needs. This provides an up-to-date view of available resources and anything that requires attention.',
+        'More than an inventory, InvenTech helps anticipate needs and supports the coordination required to maintain, replace, or acquire equipment.',
       ],
       tag: 'Inventory · Equipment · Technology Management',
       tagNote: 'Designed to make a complex responsibility easier to manage.',
@@ -103,8 +103,8 @@ const PROJECTS = [
     es: {
       type: 'App · Preparación de discursos',
       desc: [
-        'Una herramienta personal para preparar, organizar y practicar discursos para la Iglesia. Reúne estructura de discurso, escritura, consejos de oratoria, grabación y herramientas de tiempo en un mismo lugar, con el objetivo de facilitar el proceso a quienes tienen dificultades para organizar y preparar un discurso.',
-        'Diseñada alrededor de mi forma de preparar y practicar discursos, pero también pensando en hacer más sencillo ese proceso para otras personas.',
+        'Una herramienta personal para preparar, organizar y practicar discursos para la Iglesia. Reúne estructura de discurso, escritura, consejos de oratoria, grabación y herramientas de tiempo en un mismo lugar, pensada también para hacer más sencillo el proceso a quienes tienen dificultades para organizar y preparar un discurso.',
+        'Preparar un mensaje puede implicar mucho más que escribirlo: ordenar ideas, encontrar una estructura, pensar cómo comunicarlo y practicar hasta sentirse preparado. Sunday Speech Organiser busca acompañar cada una de esas etapas y hacer el proceso menos abrumador.',
       ],
       tag: 'Escritura · Oratoria · Grabación y tiempo',
       tagNote: 'Diseñada alrededor de mi forma de preparar y practicar discursos.',
@@ -112,8 +112,8 @@ const PROJECTS = [
     en: {
       type: 'App · Speech Preparation',
       desc: [
-        'A personal tool for preparing, organizing, and practicing talks for the Church. It brings speech structure, writing, oratory tips, recording, and timing tools together in one place, with the goal of making the process easier for those who find it difficult to organize and prepare a talk.',
-        'Built around the way I prepare and practice talks, while also aiming to make that process more approachable for others.',
+        'A personal tool for preparing, organizing, and practicing talks for the Church. It brings speech structure, writing, oratory tips, recording, and timing tools together in one place, also designed to make the process easier for those who find it difficult to organize and prepare a talk.',
+        'Preparing a message can involve much more than writing it: organizing ideas, finding a structure, thinking about how to communicate it, and practicing until you feel prepared. Sunday Speech Organiser is designed to support each of these stages and make the process less overwhelming.',
       ],
       tag: 'Speech Writing · Oratory · Recording & Timing',
       tagNote: 'Built around the way I prepare and practice talks.',
@@ -242,7 +242,7 @@ function DemoViewer({ name, alt, src, w, h, label, onClose }) {
         width={w}
         height={h}
         aria-label={alt}
-        className="h-auto max-h-[76vh] w-auto max-w-full border border-white/15"
+        className="h-auto max-h-[76vh] w-auto max-w-full rounded-2xl border border-white/15"
       />
     </div>
   )
@@ -274,7 +274,7 @@ function AppProject({ name, video, alt, w, h, c, expand }) {
             width={w}
             height={h}
             aria-label={alt}
-            className="h-auto w-full border border-white/10 transition-colors duration-300 group-hover:border-[#D4AF37]/60 md:h-[25rem] md:w-auto"
+            className="h-auto w-full rounded-2xl border border-white/10 transition-colors duration-300 group-hover:border-[#D4AF37]/60 md:h-[25rem] md:w-auto"
           />
         </button>
       </div>
@@ -347,7 +347,7 @@ export default function Work({ lang }) {
                   height={h}
                   loading="lazy"
                   decoding="async"
-                  className="h-auto w-full border border-white/10"
+                  className="h-auto w-full rounded-2xl border border-white/10"
                 />
               </a>
 

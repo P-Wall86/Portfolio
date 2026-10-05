@@ -9,6 +9,7 @@ const COPY = {
     subtitle: 'Contame de qué se trata.',
     name: 'Nombre',
     message: 'Mensaje',
+    label: 'Contacto',
     submit: 'Enviar mensaje',
     sent: 'Abrimos tu cliente de email.',
     copied: 'Abrimos tu cliente de email. También copiamos el mensaje por si no abre.',
@@ -18,6 +19,7 @@ const COPY = {
     subtitle: 'Tell me about it.',
     name: 'Name',
     message: 'Message',
+    label: 'Contact',
     submit: 'Send message',
     sent: 'We opened your email client.',
     copied: 'We opened your email client. We also copied the message in case it does not open.',
@@ -78,7 +80,7 @@ export default function Contact({ lang }) {
     <section id="contact" className="scroll-mt-24">
       <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 backdrop-blur-sm">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#D4AF37] mb-5">
-          Contact
+          {t.label}
         </p>
 
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
