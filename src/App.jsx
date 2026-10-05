@@ -37,7 +37,7 @@ export default function App() {
         </section>
 
         <About lang={lang} />
-        <Work />
+        <Work lang={lang} />
         <Contact lang={lang} />
       </main>
 

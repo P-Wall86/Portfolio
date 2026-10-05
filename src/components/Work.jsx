@@ -21,16 +21,22 @@ const WORK = [
   },
 ]
 
-export default function Work() {
+const COPY = {
+  es: { label: 'Proyectos', sub: 'Cosas que fui armando en el camino.' },
+  en: { label: 'Work', sub: 'Things I’ve built along the way.' },
+}
+
+export default function Work({ lang }) {
+  const t = COPY[lang]
+
   return (
     <section id="work" className="scroll-mt-24">
       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#D4AF37] mb-5">
-        Projects
+        {t.label}
       </p>
 
-      <h2 className="max-w-2xl text-2xl md:text-3xl font-bold leading-snug text-slate-100">
-        Software que ya está en producción.
-        <span className="block text-[#D4AF37]">Esto es lo que hice.</span>
+      <h2 className="max-w-2xl text-xl md:text-2xl font-medium leading-snug text-slate-300">
+        {t.sub}
       </h2>
 
       <ul className="mt-8 grid gap-4 sm:grid-cols-3">
