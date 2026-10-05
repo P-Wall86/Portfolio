@@ -1,8 +1,5 @@
 import { useState } from 'react'
 
-import { IconArrow } from './icons.jsx'
-
-const INSTAGRAM = 'https://www.instagram.com/pame.wall/'
 const CONTACT_EMAIL = 'sisterwall@gmail.com'
 const SUBJECT = 'Contact — WALL'
 
@@ -13,7 +10,6 @@ const COPY = {
     name: 'Nombre',
     message: 'Mensaje',
     submit: 'Enviar mensaje',
-    cta: 'Escribime por Instagram',
     sent: 'Abrimos tu cliente de email.',
     copied: 'Abrimos tu cliente de email. También copiamos el mensaje por si no abre.',
   },
@@ -23,7 +19,6 @@ const COPY = {
     name: 'Name',
     message: 'Message',
     submit: 'Send message',
-    cta: 'Message me on Instagram',
     sent: 'We opened your email client.',
     copied: 'We opened your email client. We also copied the message in case it does not open.',
   },
@@ -92,16 +87,6 @@ export default function Contact({ lang }) {
               {t.title}
               <span className="block text-[#D4AF37]">{t.subtitle}</span>
             </h2>
-
-            <a
-              href={INSTAGRAM}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-8 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#F5E096] via-[#E7C665] to-[#C59B27] px-7 py-3.5 text-sm font-bold uppercase tracking-[0.15em] text-[#0A1128] transition-all duration-300 hover:shadow-[0_8px_28px_rgba(212,175,55,0.35)] hover:brightness-110"
-            >
-              {t.cta}
-              <IconArrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-3">
