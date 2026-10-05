@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { IconMoon, IconSun } from './icons.jsx'
 
 const LINKS = [
-  { href: '#about', label: 'About' },
-  { href: '#work', label: 'Work' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#about', en: 'About', es: 'Sobre mí' },
+  { href: '#work', en: 'Work', es: 'Proyectos' },
+  { href: '#contact', en: 'Contact', es: 'Contacto' },
 ]
 
 const THEME_KEY = 'wall-theme'
@@ -54,13 +54,13 @@ export default function Header({ lang, onLangChange }) {
           aria-label="Principal"
           className="flex flex-1 items-center justify-end gap-4 sm:gap-8"
         >
-          {LINKS.map(({ href, label }) => (
+          {LINKS.map(({ href, en, es }) => (
             <a
               key={href}
               href={href}
               className="text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-slate-300 transition-colors duration-300 hover:text-[#D4AF37] sm:text-[0.7rem] sm:tracking-[0.2em]"
             >
-              {label}
+              {lang === 'es' ? es : en}
             </a>
           ))}
         </nav>
