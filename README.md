@@ -1,69 +1,52 @@
-# W • A • L • L — Portfolio
+# W • A • L • L
 
-Portfolio de desarrollo de software. Identidad visual **Dark Executive**: fondo
-oscuro con textura de stucco hecha en CSS puro, tipografía Montserrat y acentos
-dorados.
+Personal portfolio by P. Wall.
+
+A collection of websites and digital tools built with a focus on
+clarity, usability, and purpose.
+
+## About
+
+My background combines English language teaching and software development.
+
+I’m interested in building digital tools that make information easier
+to organize, navigate, and use.
 
 ## Stack
 
-- **React 19** + **Vite 7**
-- **Tailwind CSS v4** (vía `@tailwindcss/vite`)
+- React
+- Vite
+- Tailwind CSS
 
-## Ver localmente
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build de producción:
+Build for production:
 
 ```bash
-npm run build     # genera dist/
-npm run preview   # sirve dist/ para verificar
+npm run build
 ```
 
-## Fondo y textura
+Preview the production build:
 
-El fondo global vive **exclusivamente en el `body`** de `src/index.css`:
-
-- `background-color: #0A1128` con `!important`
-- textura de grano con un `feTurbulence` SVG inline como data URI
-- `background-attachment: fixed` para que no se mueva al hacer scroll
-
-No hay imágenes de fondo: todo es vectorial, así que no pixeliza en pantallas grandes y pesa lo mismo en cualquier resolución.
-
-> **Regla del proyecto:** ningún contenedor en React puede poner un fondo
-> sólido (`bg-black`, `bg-slate-900`, etc.). El wrapper principal es
-> `bg-transparent` y las tarjetas usan `bg-white/5` con `border-white/10`, para
-> que el stucco se vea a través de todo.
-
-## Deploy
-
-Sin GitHub Pages. `npm run build` genera `dist/` para subir donde quieras.
-`vite.config.js` usa `base: './'`, así que el build funciona en cualquier subruta.
-
-## Estructura
-
-```
-index.html                    entry de Vite
-vite.config.js                base relativa + plugins
-src/
-  main.jsx                    monta React
-  index.css                   Tailwind + fondo global del body
-  App.jsx                     wrapper transparente y composición de secciones
-  components/
-    LogoMark.jsx              nombre de marca + slogan del hero (solo texto)
-    Header.jsx                nav fija translúcida + idioma + tema
-    About.jsx                 About / Manifiesto
-    Work.jsx                  los proyectos, sección propia
-    Contact.jsx               botón dorado + formulario
-    Footer.jsx
-    icons.jsx                 iconos vectoriales de línea
+```bash
+npm run preview
 ```
 
-## Contacto
+## Projects
 
-- Instagram: [@pame.wall](https://www.instagram.com/pame.wall/)
+The portfolio includes websites and personal applications.
 
-El formulario arma el mensaje y lo copia al portapapeles para pegarlo en el DM: no hay backend ni servicio de email detrás.
+Web projects are presented through their live websites.
+Applications are presented through demo videos.
+
+## Contact
+
+The portfolio includes a contact form that opens the visitor’s
+email client using `mailto:` with a clipboard fallback.
+
+No backend or external email service is required.
