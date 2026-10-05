@@ -15,6 +15,7 @@ const COPY = {
     submit: 'Enviar mensaje',
     cta: 'Escribime por Instagram',
     sent: 'Abrimos tu cliente de email.',
+    copied: 'Abrimos tu cliente de email. También copiamos el mensaje por si no abre.',
   },
   en: {
     title: 'Got something you want to put together?',
@@ -24,6 +25,7 @@ const COPY = {
     submit: 'Send message',
     cta: 'Message me on Instagram',
     sent: 'We opened your email client.',
+    copied: 'We opened your email client. We also copied the message in case it does not open.',
   },
 }
 
@@ -32,12 +34,13 @@ const EMPTY = { name: '', email: '', message: '' }
 export default function Contact({ lang }) {
   const t = COPY[lang]
   const [form, setForm] = useState(EMPTY)
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState(null)
 
   const update = (field) => (event) =>
     setForm((prev) => ({ ...prev, [field]: event.target.value }))
 
-  /* Abre el cliente de email con el mensaje armado. Sin backend. */
+  /* Abre el cliente de email y deja el mensaje copiado como respaldo,
+     por si el cliente no está disponible. Sin backend ni dependencias. */
   function handleSubmit(event) {
     event.preventDefault()
 
@@ -50,11 +53,26 @@ export default function Contact({ lang }) {
       .filter(Boolean)
       .join('\n')
 
+    // Copiamos sin await: esperarlo rompe el gesto de usuario y en
+    // varios navegadores el cliente de email deja de abrir.
+    const canCopy =
+      typeof navigator !== 'undefined' &&
+      navigator.clipboard &&
+      typeof navigator.clipboard.writeText === 'function'
+
+    if (canCopy) {
+      navigator.clipboard.writeText(body).then(
+        () => setStatus('copied'),
+        () => setStatus('sent'),
+      )
+    } else {
+      setStatus('sent')
+    }
+
     const href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
       SUBJECT,
     )}&body=${encodeURIComponent(body)}`
 
-    setSent(true)
     window.location.href = href
   }
 
@@ -127,10 +145,11 @@ export default function Contact({ lang }) {
               role="status"
               aria-live="polite"
               className={`min-h-4 text-center text-xs text-slate-400 ${
-                sent ? 'opacity-100' : 'opacity-0'
+                status ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              {t.sent}
+              {status === 'copied' && t.copied}
+              {status === 'sent' && t.sent}
             </p>
           </form>
         </div>
