@@ -3,29 +3,29 @@ import { useState } from 'react'
 import { IconArrow } from './icons.jsx'
 
 const INSTAGRAM = 'https://www.instagram.com/pame.wall/'
+const CONTACT_EMAIL = 'sisterwall@gmail.com'
+const SUBJECT = 'Contact — WALL'
 
 const COPY = {
   es: {
-    title: '¿Tenés una idea que querés armar?',
+    title: '¿Tenés algo que querés armar?',
     subtitle: 'Contame de qué se trata.',
     form: 'Formulario:',
     name: 'Nombre',
     message: 'Mensaje',
     submit: 'Enviar mensaje',
     cta: 'Escribime por Instagram',
-    ok: 'Copiado. Pegalo en el DM de Instagram y te respondo ahí.',
-    error: 'No pude copiar al portapapeles. Mandame un DM directo.',
+    sent: 'Abrimos tu cliente de email.',
   },
   en: {
-    title: 'Have an idea you want to put together?',
+    title: 'Got something you want to put together?',
     subtitle: 'Tell me about it.',
     form: 'Form:',
     name: 'Name',
     message: 'Message',
     submit: 'Send message',
     cta: 'Message me on Instagram',
-    ok: 'Copied. Paste it in the Instagram DM and I will reply there.',
-    error: 'Could not copy to the clipboard. Send me a direct message.',
+    sent: 'We opened your email client.',
   },
 }
 
@@ -34,31 +34,30 @@ const EMPTY = { name: '', email: '', message: '' }
 export default function Contact({ lang }) {
   const t = COPY[lang]
   const [form, setForm] = useState(EMPTY)
-  const [status, setStatus] = useState(null)
+  const [sent, setSent] = useState(false)
 
   const update = (field) => (event) =>
     setForm((prev) => ({ ...prev, [field]: event.target.value }))
 
-  /* Sin backend: copia el mensaje para pegarlo en el DM de Instagram. */
-  const handleSubmit = async (event) => {
+  /* Abre el cliente de email con el mensaje armado. Sin backend. */
+  function handleSubmit(event) {
     event.preventDefault()
 
-    const text = [
-      lang === 'es' ? 'Hola WALL,' : 'Hi WALL,',
-      form.message,
-      '',
-      `— ${form.name}`,
+    const body = [
+      `${t.name}: ${form.name}`,
       form.email ? `Email: ${form.email}` : '',
+      '',
+      form.message,
     ]
       .filter(Boolean)
       .join('\n')
 
-    try {
-      await navigator.clipboard.writeText(text)
-      setStatus('ok')
-    } catch {
-      setStatus('error')
-    }
+    const href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      SUBJECT,
+    )}&body=${encodeURIComponent(body)}`
+
+    setSent(true)
+    window.location.href = href
   }
 
   const field =
@@ -133,12 +132,11 @@ export default function Contact({ lang }) {
             <p
               role="status"
               aria-live="polite"
-              className={`min-h-4 text-center text-xs ${
-                status === 'error' ? 'text-rose-300' : 'text-slate-400'
+              className={`min-h-4 text-center text-xs text-slate-400 ${
+                sent ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              {status === 'ok' && t.ok}
-              {status === 'error' && t.error}
+              {t.sent}
             </p>
           </form>
         </div>
