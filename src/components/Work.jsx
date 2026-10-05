@@ -34,23 +34,25 @@ const PROJECTS = [
     },
   },
   {
-    name: 'Punto BAT 3D',
+    name: 'PuntoBat 3D',
     href: 'https://puntobat3d.com.ar/',
     img: 'work/puntobat3d.png',
-    alt: 'Captura de pantalla de la home de Punto BAT 3D',
+    alt: 'Captura de pantalla de la home de PuntoBat 3D',
     w: 1902,
     h: 906,
     es: {
-      type: 'Website',
+      type: 'Sitio web · Impresión 3D',
       desc: [
-        'Tienda online de impresión 3D a medida. Catálogo por categorías con paginación y pedido directo por WhatsApp.',
+        'Sitio web para un emprendimiento de impresión 3D, creado para presentar su catálogo y darle al negocio una presencia propia en línea. Fue mi primer proyecto desarrollado con React, con paginación de productos y una interfaz responsive diseñada alrededor de la identidad del emprendimiento.',
       ],
+      tag: 'React · Catálogo de productos',
     },
     en: {
-      type: 'Website',
+      type: 'Website · 3D Printing',
       desc: [
-        'Custom 3D printing store. Product catalog by category with pagination and direct ordering over WhatsApp.',
+        'A product website for a 3D printing venture, created to showcase its catalog and give the brand a distinctive online presence. This was my first project built with React, featuring product pagination and a responsive interface designed around the character of the business.',
       ],
+      tag: 'React · Product Catalog',
     },
   },
 ]
