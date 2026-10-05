@@ -20,7 +20,18 @@ function readTheme() {
 export default function Header({ lang, onLangChange }) {
   const [theme, setTheme] = useState(readTheme)
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const menuBtn = useRef(null)
+
+  /* Scrolleado, el header se apoya sobre las capturas de los proyectos:
+     con bg-white/5 el nav queda gris sobre blanco y no se lee. */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     if (!open) return
@@ -74,7 +85,13 @@ export default function Header({ lang, onLangChange }) {
         : 'Open navigation'
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-white/5 backdrop-blur-md">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 backdrop-blur-md ${
+        scrolled
+          ? 'bg-[#0A1128]/92 light:bg-[#F2ECE1]/92'
+          : 'bg-white/5'
+      }`}
+    >
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-4 sm:gap-6 sm:px-6">
         <a
           href="#top"

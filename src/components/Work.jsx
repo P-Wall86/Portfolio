@@ -17,8 +17,8 @@ const PROJECTS = [
     es: {
       type: 'Sitio web · Formación en Coaching Ontológico',
       desc: [
-        'Sitio web de una escuela de formación en coaching ontológico, que reúne su identidad, propuestas de formación, sedes, staff y medios de contacto en una experiencia responsive.',
-        'Desarrollado desde cero con HTML, CSS y JavaScript vanilla, con foco en la estructura del contenido, el diseño responsive y una implementación básica de SEO.',
+        'Sitio web para una escuela de formación en coaching ontológico. Reúne en una experiencia responsive la identidad de la escuela, sus propuestas formativas, las sedes, el equipo docente y los medios de contacto.',
+        'Desarrollado desde cero con HTML, CSS y JavaScript vanilla, con el foco puesto en estructurar el contenido, en el diseño responsive y en una base de SEO sólida.',
       ],
       tag: 'Proyecto inicial',
       tagNote: 'Desarrollado durante mis primeros pasos en el desarrollo de software.',
@@ -26,8 +26,8 @@ const PROJECTS = [
     en: {
       type: 'Website · Coaching Education',
       desc: [
-        'A long-form website for a school of ontological coaching, bringing together its identity, training programs, locations, staff, and contact information in a single responsive experience.',
-        'Built from scratch with vanilla HTML, CSS, and JavaScript, with a focus on content structure, responsive design, and basic SEO.',
+        'Website for a school of ontological coaching. It brings the identity of the school, its training programs, the locations, the teaching staff and the contact details together in a single responsive experience.',
+        'Built from scratch with vanilla HTML, CSS and JavaScript, with the focus on content structure, responsive design and a solid SEO foundation.',
       ],
       tag: 'Early project',
       tagNote: 'Built early in my software development journey.',
@@ -43,13 +43,13 @@ const PROJECTS = [
     es: {
       type: 'Website',
       desc: [
-        'E-commerce de impresión 3D personalizada. Catálogo por categorías con paginación y pedido directo por WhatsApp.',
+        'Tienda online de impresión 3D a medida. Catálogo por categorías con paginación y pedido directo por WhatsApp.',
       ],
     },
     en: {
       type: 'Website',
       desc: [
-        'Custom 3D printing e-commerce. Catalog by category with pagination and direct WhatsApp ordering.',
+        'Custom 3D printing store. Product catalog by category with pagination and direct ordering over WhatsApp.',
       ],
     },
   },
