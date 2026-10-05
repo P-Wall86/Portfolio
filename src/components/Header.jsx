@@ -81,7 +81,7 @@ export default function Header({ lang, onLangChange }) {
           aria-label="WALL — ir al inicio"
           className="shrink-0 text-sm font-extrabold tracking-[0.3em] text-[#E7C665]"
         >
-          WALL
+          W•A•L•L
         </a>
 
         <nav
