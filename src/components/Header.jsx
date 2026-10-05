@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import { IconMoon, IconSun } from './icons.jsx'
+import { IconClose, IconMenu, IconMoon, IconSun } from './icons.jsx'
 
 const LINKS = [
   { href: '#about', en: 'About', es: 'Sobre mí' },
@@ -19,6 +19,22 @@ function readTheme() {
 
 export default function Header({ lang, onLangChange }) {
   const [theme, setTheme] = useState(readTheme)
+  const [open, setOpen] = useState(false)
+  const menuBtn = useRef(null)
+
+  useEffect(() => {
+    if (!open) return
+
+    function onKey(e) {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        menuBtn.current?.focus()
+      }
+    }
+
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
 
   function toggleTheme() {
     const next = theme === 'dark' ? 'light' : 'dark'
@@ -39,9 +55,18 @@ export default function Header({ lang, onLangChange }) {
 
   const langLabel = lang === 'es' ? 'Cambiar a inglés' : 'Cambiar a español'
 
+  const menuLabel =
+    lang === 'es'
+      ? open
+        ? 'Cerrar navegación'
+        : 'Abrir navegación'
+      : open
+        ? 'Close navigation'
+        : 'Open navigation'
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-white/5 backdrop-blur-md">
-      <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-4 sm:gap-6 sm:px-6">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-4 sm:gap-6 sm:px-6">
         <a
           href="#top"
           aria-label="WALL — ir al inicio"
@@ -52,7 +77,7 @@ export default function Header({ lang, onLangChange }) {
 
         <nav
           aria-label="Principal"
-          className="flex flex-1 items-center justify-end gap-4 sm:gap-8"
+          className="hidden flex-1 items-center justify-end gap-4 sm:gap-8 md:flex"
         >
           {LINKS.map(({ href, en, es }) => (
             <a
@@ -90,8 +115,47 @@ export default function Header({ lang, onLangChange }) {
               <IconMoon className="h-4 w-4" aria-hidden="true" />
             )}
           </button>
+
+          <button
+            ref={menuBtn}
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={menuLabel}
+            title={menuLabel}
+            aria-expanded={open}
+            aria-controls="menu-movil"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-slate-300 transition-colors duration-300 hover:border-[#D4AF37]/60 hover:text-[#E7C665] md:hidden"
+          >
+            {open ? (
+              <IconClose className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <IconMenu className="h-4 w-4" aria-hidden="true" />
+            )}
+          </button>
         </div>
       </div>
+
+      {open && (
+        <nav
+          id="menu-movil"
+          aria-label="Navegación móvil"
+          className="absolute inset-x-0 top-full border-b border-white/10 bg-[#0A1128]/95 backdrop-blur-lg light:bg-[#F2ECE1]/95 md:hidden"
+        >
+          <ul className="mx-auto max-w-5xl px-4 py-1 sm:px-6">
+            {LINKS.map(({ href, en, es }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center border-b border-white/5 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-300 transition-colors duration-300 last:border-b-0 hover:text-[#D4AF37]"
+                >
+                  {lang === 'es' ? es : en}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </header>
   )
 }

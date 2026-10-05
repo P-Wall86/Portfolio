@@ -32,3 +32,19 @@ export function IconMoon(props) {
     </svg>
   )
 }
+
+export function IconMenu(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3.5 7h17M3.5 12h17M3.5 17h17" />
+    </svg>
+  )
+}
+
+export function IconClose(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M6 6l12 12M18 6 6 18" />
+    </svg>
+  )
+}
