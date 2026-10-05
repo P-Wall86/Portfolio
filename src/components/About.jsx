@@ -2,10 +2,6 @@ export default function About() {
   return (
     <section id="about" className="scroll-mt-24">
       <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 backdrop-blur-sm">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#D4AF37] mb-5">
-          About / Manifiesto
-        </p>
-
         <div className="max-w-3xl space-y-5 text-slate-300 leading-relaxed text-base md:text-lg">
           <p>
             No vendo pantallas. Construyo software a medida para operaciones que

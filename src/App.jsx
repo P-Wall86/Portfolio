@@ -14,10 +14,6 @@ export default function App() {
       <main className="mx-auto max-w-5xl space-y-6 px-6 pb-8">
         <section id="top" className="flex flex-col items-center">
           <LogoMark />
-          <p className="max-w-xl text-center text-sm leading-relaxed text-slate-400 md:text-base">
-            Software a medida para operaciones que no entran en una plantilla.
-            Web, cloud y sistemas custom — construidos para durar.
-          </p>
         </section>
 
         <About />
