@@ -1,30 +1,39 @@
 import { IconArrow } from './icons.jsx'
 
-const WORK = [
+const COPY = {
+  es: { label: 'Proyectos', sub: 'Cosas que fui armando en el camino.', cta: 'Visitar sitio', type: 'Website' },
+  en: { label: 'Work', sub: 'Things I’ve built along the way.', cta: 'Visit website', type: 'Website' },
+}
+
+/*
+  TEMP: solo los dos sitios web. Inventech (app Android) queda fuera hasta
+  que se defina como pieza propia.
+
+  TEMP: las descripciones son las del sitio anterior, sin revisar. Hay que
+  confirmarlas antes de dar por cerrado el copy.
+*/
+const PROJECTS = [
   {
-    name: 'Inventech',
-    note: 'Plataforma de gestión de activos tecnológicos para una Estaca. Inventario por unidad, control de acceso por rol y registro de auditoría. Web y app Android nativa.',
-    stack: ['React 18', 'TypeScript', 'Supabase', 'Tailwind', 'Capacitor'],
-    href: null,
+    name: 'EfiCO',
+    type: 'Website',
+    note: 'Sitio institucional one-page para una escuela de coaching ontológico. Carrusel, accordion responsive y optimizado para SEO.',
+    href: 'https://eficoweb.com/',
+    img: 'work/efico.png',
+    alt: 'Captura de pantalla de la home de EfiCO',
+    w: 1903,
+    h: 910,
   },
   {
     name: 'Punto BAT 3D',
+    type: 'Website',
     note: 'E-commerce de impresión 3D personalizada. Catálogo por categorías con paginación y pedido directo por WhatsApp.',
-    stack: ['Next.js', 'Tailwind', 'TypeScript'],
     href: 'https://puntobat3d.com.ar/',
-  },
-  {
-    name: 'EfiCO',
-    note: 'Sitio institucional one-page para una escuela de coaching ontológico. Carrusel, accordion responsive y optimizado para SEO.',
-    stack: ['HTML', 'CSS', 'JavaScript'],
-    href: 'https://eficoweb.com/',
+    img: 'work/puntobat3d.png',
+    alt: 'Captura de pantalla de la home de Punto BAT 3D',
+    w: 1902,
+    h: 906,
   },
 ]
-
-const COPY = {
-  es: { label: 'Proyectos', sub: 'Cosas que fui armando en el camino.' },
-  en: { label: 'Work', sub: 'Things I’ve built along the way.' },
-}
 
 export default function Work({ lang }) {
   const t = COPY[lang]
@@ -39,60 +48,60 @@ export default function Work({ lang }) {
         {t.sub}
       </h2>
 
-      <ul className="mt-8 grid gap-4 sm:grid-cols-3">
-        {WORK.map(({ name, note, stack, href }) => {
-          const inner = (
-            <>
-              <h3 className="text-base font-bold text-slate-100">{name}</h3>
+      <div className="mt-16 space-y-24 md:mt-20 md:space-y-32">
+        {PROJECTS.map(({ name, note, href, img, alt, w, h }) => (
+          <article key={name}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={-1}
+              aria-hidden="true"
+              className="block"
+            >
+              <img
+                src={img}
+                alt={alt}
+                width={w}
+                height={h}
+                loading="lazy"
+                decoding="async"
+                className="h-auto w-full border border-white/10"
+              />
+            </a>
 
-              <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                {note}
-              </p>
+            <div className="mt-7 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
+              <div>
+                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-100">
+                    {name}
+                  </h3>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-[#D4AF37]">
+                    {t.type}
+                  </p>
+                </div>
 
-              <ul className="mt-5 flex flex-wrap gap-1.5">
-                {stack.map((tech) => (
-                  <li
-                    key={tech}
-                    className="rounded-full border border-white/10 px-2.5 py-1 text-[0.62rem] font-medium tracking-wider text-slate-400"
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
+                <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-400">
+                  {note}
+                </p>
+              </div>
 
-              {href && (
-                <span className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#D4AF37]">
-                  Ver el sitio en vivo
-                  <IconArrow
-                    className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </span>
-              )}
-            </>
-          )
-
-          const shell =
-            'block h-full rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37]/70 hover:bg-[#D4AF37]/[0.06]'
-
-          return (
-            <li key={name}>
-              {href ? (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group ${shell}`}
-                >
-                  {inner}
-                </a>
-              ) : (
-                <div className={shell}>{inner}</div>
-              )}
-            </li>
-          )
-        })}
-      </ul>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex shrink-0 items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#E7C665] transition-colors duration-300 hover:text-[#D4AF37]"
+              >
+                {t.cta}
+                <IconArrow
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   )
 }
