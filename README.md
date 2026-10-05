@@ -31,14 +31,12 @@ El fondo global vive **exclusivamente en el `body`** de `src/index.css`:
 - textura de grano con un `feTurbulence` SVG inline como data URI
 - `background-attachment: fixed` para que no se mueva al hacer scroll
 
-No hay imágenes de fondo: todo es vectorial, así que no pixeliza en pantallas
-grandes y pesa lo mismo en cualquier resolución.
+No hay imágenes de fondo: todo es vectorial, así que no pixeliza en pantallas grandes y pesa lo mismo en cualquier resolución.
 
 > **Regla del proyecto:** ningún contenedor en React puede poner un fondo
 > sólido (`bg-black`, `bg-slate-900`, etc.). El wrapper principal es
 > `bg-transparent` y las tarjetas usan `bg-white/5` con `border-white/10`, para
-> que el stucco se vea a través de todo. Si agregás una sección con color
-> propio, mantenela translúcida.
+> que el stucco se vea a través de todo.
 
 ## Deploy
 
@@ -53,20 +51,19 @@ vite.config.js                base relativa + plugins
 src/
   main.jsx                    monta React
   index.css                   Tailwind + fondo global del body
-  App.jsx                     wrapper transparente y composicion de secciones
+  App.jsx                     wrapper transparente y composición de secciones
   components/
     LogoMark.jsx              nombre de marca + slogan del hero (solo texto)
-    Header.jsx                nav fija translucida + idioma + tema
+    Header.jsx                nav fija translúcida + idioma + tema
     About.jsx                 About / Manifiesto
-    Work.jsx                  los proyectos, seccion propia
-    Contact.jsx               boton dorado + formulario
+    Work.jsx                  los proyectos, sección propia
+    Contact.jsx               botón dorado + formulario
     Footer.jsx
-    icons.jsx                 iconos vectoriales de linea
+    icons.jsx                 iconos vectoriales de línea
 ```
 
 ## Contacto
 
 - Instagram: [@pame.wall](https://www.instagram.com/pame.wall/)
 
-El formulario arma el mensaje y lo copia al portapapeles para pegarlo en el DM:
-no hay backend ni servicio de email detrás.
+El formulario arma el mensaje y lo copia al portapapeles para pegarlo en el DM: no hay backend ni servicio de email detrás.
