@@ -4,7 +4,7 @@ import { IconMoon, IconSun } from './icons.jsx'
 
 const LINKS = [
   { href: '#about', en: 'About', es: 'Sobre mí' },
-  { href: '#work', en: 'Work', es: 'Proyectos' },
+  { href: '#work', en: 'Projects', es: 'Proyectos' },
   { href: '#contact', en: 'Contact', es: 'Contacto' },
 ]
 

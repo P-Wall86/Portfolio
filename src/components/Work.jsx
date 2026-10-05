@@ -25,7 +25,7 @@ export default function Work() {
   return (
     <section id="work" className="scroll-mt-24">
       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#D4AF37] mb-5">
-        Work
+        Projects
       </p>
 
       <h2 className="max-w-2xl text-2xl md:text-3xl font-bold leading-snug text-slate-100">
