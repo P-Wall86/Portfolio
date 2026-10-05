@@ -36,7 +36,7 @@ export default function Contact() {
   }
 
   const field =
-    'w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 transition-colors duration-300 focus:border-[#D4AF37]/70 focus:outline-none'
+    'w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 transition-colors duration-300 focus:border-[#D4AF37]/70 focus:outline-none'
 
   return (
     <section id="contact" className="scroll-mt-24">

@@ -21,7 +21,7 @@ export default function Footer() {
       <p className="text-sm font-extrabold tracking-[0.35em] text-[#E7C665]">
         W•A•L•L
       </p>
-      <p className="mt-2 text-[0.7rem] font-medium uppercase tracking-[0.25em] text-slate-500">
+      <p className="mt-2 text-[0.7rem] font-medium uppercase tracking-[0.25em] text-slate-400">
         built to serve
       </p>
 
@@ -42,7 +42,7 @@ export default function Footer() {
         ))}
       </ul>
 
-      <p className="mt-8 text-[0.7rem] tracking-wider text-slate-500">
+      <p className="mt-8 text-[0.7rem] tracking-wider text-slate-400">
         &copy; {year} WALL
       </p>
     </footer>
