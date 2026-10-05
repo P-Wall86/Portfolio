@@ -1,13 +1,18 @@
-import { IconArrow } from './icons.jsx'
+import { useEffect, useRef, useState } from 'react'
+
+import { IconArrow, IconClose } from './icons.jsx'
 
 const COPY = {
-  es: { label: 'Proyectos', sub: 'Cosas que fui armando en el camino.', cta: 'Visitar sitio' },
-  en: { label: 'Work', sub: 'Things I’ve built along the way.', cta: 'Visit website' },
+  es: { label: 'Proyectos', sub: 'Cosas que fui armando en el camino.', cta: 'Visitar sitio', expand: 'Ampliar demo' },
+  en: { label: 'Work', sub: 'Things I’ve built along the way.', cta: 'Visit website', expand: 'Expand demo' },
 }
 
-/* TEMP: la copy de Punto BAT 3D sigue siendo la del sitio anterior, sin revisar. */
+/* kind: 'image' (sitio web, imagen full width) o 'video' (app, demo vertical
+   a la derecha con texto al lado). Las apps no llevan href: el video es la
+   demostracion y se abre en el visor. */
 const PROJECTS = [
   {
+    kind: 'image',
     name: 'EfiCoWeb',
     href: 'https://eficoweb.com/',
     img: 'work/efico.png',
@@ -34,6 +39,7 @@ const PROJECTS = [
     },
   },
   {
+    kind: 'image',
     name: 'PuntoBat 3D',
     href: 'https://puntobat3d.com.ar/',
     img: 'work/puntobat3d.png',
@@ -57,7 +63,236 @@ const PROJECTS = [
       tagNote: 'My first project built with React.',
     },
   },
+  {
+    kind: 'video',
+    name: 'InvenTech',
+    /* TEMP: sin URL publica; la demostracion es el video. */
+    video: 'work/inventech.mp4',
+    alt: 'Video de la app InvenTech',
+    w: 489,
+    h: 1058,
+    es: {
+      type: 'App · Gestión tecnológica',
+      desc: [
+        'Una herramienta diseñada para ayudar a especialistas de tecnología a gestionar el equipamiento de múltiples ubicaciones. En este caso, fue desarrollada para una organización religiosa, donde cada ubicación puede contar con sus propios recursos tecnológicos, equipos y necesidades.',
+        'Centraliza la información sobre los equipos, su ubicación y estado, y facilita el seguimiento de reparaciones, reemplazos y necesidades de nuevo equipamiento.',
+        'Más que un inventario, InvenTech ofrece una visión clara de los recursos tecnológicos de la organización y ayuda a mantener organizada la coordinación necesaria para gestionarlos.',
+      ],
+      tag: 'Inventario · Equipamiento · Gestión tecnológica',
+      tagNote: 'Diseñada para hacer más manejable una responsabilidad compleja.',
+    },
+    en: {
+      type: 'App · Technology Management',
+      desc: [
+        'A tool designed to help technology specialists manage equipment across multiple locations. In this case, it was developed for a religious organization, where each location may have its own technology resources, equipment, and needs.',
+        'It brings information about equipment, location, and condition into one place, while making it easier to track repairs, replacements, and new equipment needs.',
+        'More than an inventory, InvenTech provides a clear view of technology resources across the organization and helps keep the coordination behind them organized.',
+      ],
+      tag: 'Inventory · Equipment · Technology Management',
+      tagNote: 'Designed to make a complex responsibility easier to manage.',
+    },
+  },
+  {
+    kind: 'video',
+    name: 'Sunday Speech Organiser',
+    /* Sin URL publica; la demostracion es el video. */
+    video: 'work/sso.mp4',
+    alt: 'Video de la app Sunday Speech Organiser',
+    w: 489,
+    h: 1058,
+    es: {
+      type: 'App · Preparación de discursos',
+      desc: [
+        'Una herramienta personal para preparar, organizar y practicar discursos para la Iglesia. Reúne estructura de discurso, escritura, consejos de oratoria, grabación y herramientas de tiempo en un mismo lugar, con el objetivo de facilitar el proceso a quienes tienen dificultades para organizar y preparar un discurso.',
+        'Diseñada alrededor de mi forma de preparar y practicar discursos, pero también pensando en hacer más sencillo ese proceso para otras personas.',
+      ],
+      tag: 'Escritura · Oratoria · Grabación y tiempo',
+      tagNote: 'Diseñada alrededor de mi forma de preparar y practicar discursos.',
+    },
+    en: {
+      type: 'App · Speech Preparation',
+      desc: [
+        'A personal tool for preparing, organizing, and practicing talks for the Church. It brings speech structure, writing, oratory tips, recording, and timing tools together in one place, with the goal of making the process easier for those who find it difficult to organize and prepare a talk.',
+        'Built around the way I prepare and practice talks, while also aiming to make that process more approachable for others.',
+      ],
+      tag: 'Speech Writing · Oratory · Recording & Timing',
+      tagNote: 'Built around the way I prepare and practice talks.',
+    },
+  },
 ]
+
+/* Atributos de los demos: sin audio para que el autoplay no sea bloqueado,
+   loop para que reinicie solo, y sin controles ni poster. */
+const VIDEO_PROPS = {
+  autoPlay: true,
+  muted: true,
+  loop: true,
+  playsInline: true,
+  controls: false,
+  preload: 'none',
+  disablePictureInPicture: true,
+}
+
+/* El <video> no tiene loading="lazy": su src se asigna al acercarse a
+   pantalla, asi que no descarga nada hasta que hace falta. */
+function useLazySrc(src) {
+  const ref = useRef(null)
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    if (!src) return
+    const el = ref.current
+    if (!el) return
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setReady(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '200px' }
+    )
+
+    io.observe(el)
+    return () => io.disconnect()
+  }, [src])
+
+  return [ref, ready ? src : null]
+}
+
+function ProjectText({ name, c }) {
+  return (
+    <>
+      <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+        <h3 className="text-xl md:text-2xl font-bold text-slate-100">{name}</h3>
+        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-[#D4AF37]">
+          {c.type}
+        </p>
+      </div>
+
+      <div className="mt-4 max-w-xl space-y-3 text-sm leading-relaxed text-slate-400">
+        {c.desc.map((text) => (
+          <p key={text}>{text}</p>
+        ))}
+      </div>
+
+      {c.tag && (
+        <div className="mt-6 border-l border-white/10 pl-4">
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-[#D4AF37]">
+            {c.tag}
+          </p>
+          <p className="mt-1.5 max-w-sm text-xs leading-relaxed text-slate-400">
+            {c.tagNote}
+          </p>
+        </div>
+      )}
+    </>
+  )
+}
+
+/* Visor: overlay sobre la pagina. El fondo translucido sigue dejando ver el
+   stucco del body, no lo tapa. */
+function DemoViewer({ name, alt, src, w, h, label, onClose }) {
+  const closeRef = useRef(null)
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', onKey)
+
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    closeRef.current?.focus()
+
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [onClose])
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${name} — ${label}`}
+      onPointerDown={(e) => {
+        if (e.target === e.currentTarget) onClose()
+      }}
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-5 bg-[#0A1128]/92 p-4 backdrop-blur-sm md:p-10"
+    >
+      <button
+        ref={closeRef}
+        type="button"
+        onClick={onClose}
+        aria-label={label}
+        className="absolute top-4 right-4 inline-flex h-11 w-11 items-center justify-center border border-white/20 text-slate-200 transition-colors duration-300 hover:border-[#D4AF37] hover:text-[#D4AF37]"
+      >
+        <IconClose className="h-5 w-5" aria-hidden="true" />
+      </button>
+
+      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-[#D4AF37]">
+        {name}
+      </p>
+
+      <video
+        {...VIDEO_PROPS}
+        src={src}
+        width={w}
+        height={h}
+        aria-label={alt}
+        className="h-auto max-h-[76vh] w-auto max-w-full border border-white/15"
+      />
+    </div>
+  )
+}
+
+function AppProject({ name, video, alt, w, h, c, expand }) {
+  const [ref, src] = useLazySrc(video)
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <div className="flex flex-col-reverse items-center gap-8 md:flex-row md:items-start md:gap-12">
+        <div className="md:flex-1">
+          <ProjectText name={name} c={c} />
+        </div>
+
+        {/* w-auto con h fijo en desktop y w con h-auto en mobile: en los dos
+            casos sale la proporcion 489x1058 sin object-cover ni recortes. */}
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label={`${expand} — ${name}`}
+          className="group w-[62%] max-w-[250px] shrink-0 md:w-auto md:max-w-[250px]"
+        >
+          <video
+            {...VIDEO_PROPS}
+            ref={ref}
+            src={src}
+            width={w}
+            height={h}
+            aria-label={alt}
+            className="h-auto w-full border border-white/10 transition-colors duration-300 group-hover:border-[#D4AF37]/60 md:h-[25rem] md:w-auto"
+          />
+        </button>
+      </div>
+
+      {open && (
+        <DemoViewer
+          name={name}
+          alt={alt}
+          src={video}
+          w={w}
+          h={h}
+          label={expand}
+          onClose={() => setOpen(false)}
+        />
+      )}
+    </>
+  )
+}
 
 export default function Work({ lang }) {
   const t = COPY[lang]
@@ -75,8 +310,25 @@ export default function Work({ lang }) {
       </h2>
 
       <div className="mt-8 space-y-16 md:mt-10 md:space-y-20">
-        {PROJECTS.map(({ name, href, img, alt, w, h, es, en }) => {
+        {PROJECTS.map((p) => {
+          const { kind, name, href, img, video, alt, w, h, es, en } = p
           const c = lang === 'es' ? es : en
+
+          if (kind === 'video') {
+            return (
+              <article key={name}>
+                <AppProject
+                  name={name}
+                  video={video}
+                  alt={alt}
+                  w={w}
+                  h={h}
+                  c={c}
+                  expand={t.expand}
+                />
+              </article>
+            )
+          }
 
           return (
             <article key={name}>
@@ -101,31 +353,7 @@ export default function Work({ lang }) {
 
               <div className="mt-7 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
                 <div>
-                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                    <h3 className="text-xl md:text-2xl font-bold text-slate-100">
-                      {name}
-                    </h3>
-                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-[#D4AF37]">
-                      {c.type}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 max-w-xl space-y-3 text-sm leading-relaxed text-slate-400">
-                    {c.desc.map((text) => (
-                      <p key={text}>{text}</p>
-                    ))}
-                  </div>
-
-                  {c.tag && (
-                    <div className="mt-6 border-l border-white/10 pl-4">
-                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-[#D4AF37]">
-                        {c.tag}
-                      </p>
-                      <p className="mt-1.5 max-w-sm text-xs leading-relaxed text-slate-400">
-                        {c.tagNote}
-                      </p>
-                    </div>
-                  )}
+                  <ProjectText name={name} c={c} />
                 </div>
 
                 <a
