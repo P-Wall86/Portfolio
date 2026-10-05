@@ -59,7 +59,9 @@ export default function Work({ lang }) {
   const t = COPY[lang]
 
   return (
-    <section id="work" className="scroll-mt-24">
+    // pt-12 despega el titulo de la seccion de arriba; el mt chico de abajo
+    // lo agrupa con su propio contenido en vez de dejarlo flotando.
+    <section id="work" className="scroll-mt-24 pt-12">
       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#D4AF37] mb-5">
         {t.label}
       </p>
@@ -68,7 +70,7 @@ export default function Work({ lang }) {
         {t.sub}
       </h2>
 
-      <div className="mt-14 space-y-16 md:mt-16 md:space-y-20">
+      <div className="mt-8 space-y-16 md:mt-10 md:space-y-20">
         {PROJECTS.map(({ name, href, img, alt, w, h, es, en }) => {
           const c = lang === 'es' ? es : en
 
