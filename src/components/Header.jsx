@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { IconMoon, IconSun } from './icons.jsx'
 
@@ -17,18 +17,8 @@ function readTheme() {
   return document.documentElement.classList.contains('light') ? 'light' : 'dark'
 }
 
-export default function Header() {
+export default function Header({ lang, onLangChange }) {
   const [theme, setTheme] = useState(readTheme)
-  // Sin traducciones todavia: solo marca el idioma activo.
-  const [lang, setLang] = useState('es')
-
-  useEffect(() => {
-    document.documentElement.lang = lang
-  }, [lang])
-
-  function toggleLang() {
-    setLang((prev) => (prev === 'es' ? 'en' : 'es'))
-  }
 
   function toggleTheme() {
     const next = theme === 'dark' ? 'light' : 'dark'
@@ -79,7 +69,7 @@ export default function Header() {
           {/* Idioma: un boton que alterna ES / EN, mismo diseno que el de tema. */}
           <button
             type="button"
-            onClick={toggleLang}
+            onClick={() => onLangChange(lang === 'es' ? 'en' : 'es')}
             aria-label={langLabel}
             title={langLabel}
             className="flex h-8 min-w-9 items-center justify-center rounded-full border border-white/10 px-2 text-[0.62rem] font-bold tracking-[0.12em] text-slate-300 transition-colors duration-300 hover:border-[#D4AF37]/60 hover:text-[#E7C665]"
