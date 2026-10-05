@@ -32,8 +32,17 @@ export default function Header({ lang, onLangChange }) {
       }
     }
 
+    function onOutside(e) {
+      if (!e.target.closest('header')) setOpen(false)
+    }
+
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onOutside)
+
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onOutside)
+    }
   }, [open])
 
   function toggleTheme() {
