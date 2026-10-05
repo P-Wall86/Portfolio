@@ -43,16 +43,18 @@ const PROJECTS = [
     es: {
       type: 'Sitio web · Impresión 3D',
       desc: [
-        'Sitio web para un emprendimiento de impresión 3D, creado para presentar su catálogo y darle al negocio una presencia propia en línea. Fue mi primer proyecto desarrollado con React, con paginación de productos y una interfaz responsive diseñada alrededor de la identidad del emprendimiento.',
+        'Sitio web para un emprendimiento de impresión 3D, diseñado para presentar su catálogo y darle al negocio una presencia propia en línea. Incluye paginación de productos y una interfaz responsive.',
       ],
       tag: 'React · Catálogo de productos',
+      tagNote: 'Mi primer proyecto desarrollado con React.',
     },
     en: {
       type: 'Website · 3D Printing',
       desc: [
-        'A product website for a 3D printing venture, created to showcase its catalog and give the brand a distinctive online presence. This was my first project built with React, featuring product pagination and a responsive interface designed around the character of the business.',
+        'A website for a 3D printing business, designed to showcase its catalog and give the brand an online presence. Includes product pagination and a responsive interface.',
       ],
       tag: 'React · Product Catalog',
+      tagNote: 'My first project built with React.',
     },
   },
 ]
