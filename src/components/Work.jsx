@@ -21,7 +21,7 @@ const PROJECTS = [
         'Desarrollado desde cero con HTML, CSS y JavaScript vanilla, con el foco puesto en estructurar el contenido, en el diseño responsive y en una base de SEO sólida.',
       ],
       tag: 'Proyecto inicial',
-      tagNote: 'Desarrollado durante mis primeros pasos en el desarrollo de software.',
+      tagNote: 'Uno de mis primeros proyectos como developer.',
     },
     en: {
       type: 'Website · Coaching Education',
@@ -30,7 +30,7 @@ const PROJECTS = [
         'Built from scratch with vanilla HTML, CSS and JavaScript, with the focus on content structure, responsive design and a solid SEO foundation.',
       ],
       tag: 'Early project',
-      tagNote: 'Built early in my software development journey.',
+      tagNote: 'One of my first projects as a developer.',
     },
   },
   {
