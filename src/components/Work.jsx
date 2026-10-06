@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { IconArrow, IconClose } from './icons.jsx'
 
 const COPY = {
-  es: { label: 'Proyectos', sub: 'Cosas que fui armando en el camino.', cta: 'Visitar sitio', expand: 'Ampliar demo' },
-  en: { label: 'Work', sub: 'Things I’ve built along the way.', cta: 'Visit website', expand: 'Expand demo' },
+  es: { label: 'Proyectos', sub: 'Lo que fui construyendo en el camino', cta: 'Visitar sitio', expand: 'Ampliar demo' },
+  en: { label: 'Work', sub: 'What I’ve been building along the way', cta: 'Visit website', expand: 'Expand demo' },
 }
 
 /* kind: 'image' (sitio web, imagen full width) o 'video' (app, demo vertical
